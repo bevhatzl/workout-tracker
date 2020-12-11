@@ -4,7 +4,17 @@ require('dotenv').config();
 
 const PWD = process.env.DB_PWD;
 const databaseUrl = `mongodb+srv://chick-flick:${encodeURIComponent(PWD)}@cluster0.fqf9a.mongodb.net/workout`;
-mongoose.connect(databaseUrl, { useNewUrlParser: true, useFindAndModify: false });
+// mongoose.connect(databaseUrl, { useNewUrlParser: true, useFindAndModify: false });
+
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/workout',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 let workoutSeed = [
   {
