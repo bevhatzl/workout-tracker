@@ -15,10 +15,14 @@ router.post("/api/workouts", ({ body }, res) => {
 // Add excercise
 router.put("/api/workouts/:id", (req, res) => {
     Workout.updateOne({ _id: req.params.id }, {
-        exercises: {
-            type: req.body.type,
-            name: req.body.name
-        }
+        $push: { exercises: req.body } // object deconstruction
+        // Another way to add by object literal
+        // $push: {
+        //     exercises: {
+        //     //     // type: req.body.type,
+        //     //     // name: req.body.name
+        //     }
+        // }
     })
         .then(dbWorkout => {
             res.json(dbWorkout);
