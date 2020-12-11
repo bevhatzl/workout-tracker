@@ -17,7 +17,7 @@ const databaseUrl = `mongodb+srv://chick-flick:${encodeURIComponent(PWD)}@cluste
 mongoose.connect(databaseUrl, { useNewUrlParser: true, useFindAndModify: false });
 
 // routes
-// app.use(require("./routes/api.js"));
+app.use(require("./routes/api.js"));
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
