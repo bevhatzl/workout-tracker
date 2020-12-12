@@ -6,6 +6,7 @@ const PWD = process.env.DB_PWD;
 const databaseUrl = `mongodb+srv://chick-flick:${encodeURIComponent(PWD)}@cluster0.fqf9a.mongodb.net/workout`;
 // mongoose.connect(databaseUrl, { useNewUrlParser: true, useFindAndModify: false });
 
+// Connection for deployment to heroku
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/workout',
   {

@@ -14,8 +14,11 @@ app.use(express.static("public"));
 
 const PWD = process.env.DB_PWD;
 const databaseUrl = `mongodb+srv://chick-flick:${encodeURIComponent(PWD)}@cluster0.fqf9a.mongodb.net/workout`;
+
+// Connection before deployment
 // mongoose.connect(databaseUrl, { useNewUrlParser: true, useFindAndModify: false });
 
+// Connection for deployment on heroku
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/workout',
     {
@@ -29,8 +32,6 @@ mongoose.connect(
 const db = require("./models");
 
 require("./routes/api")(app);
-
-
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);

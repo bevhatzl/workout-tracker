@@ -28,7 +28,6 @@ module.exports = function (app) {
     app.put("/api/workouts/:id", ({ body, params }, res) => {
         const workoutId = params.id;
         let savedExercises = [];
-
         // gets all the currently saved exercises in the current workout
         db.Workout.find({ _id: workoutId })
             .then(dbWorkout => {
@@ -41,19 +40,17 @@ module.exports = function (app) {
             .catch(err => {
                 res.json(err);
             });
-
+        // Find the workout by ID and add the new exercise
         function updateWorkout(exercises) {
             db.Workout.findByIdAndUpdate(workoutId, { exercises: exercises }, function (err, doc) {
                 if (err) {
                     console.log(err)
                 }
-
             })
         }
-
     })
 
-    // Used by the stats page
+    // Get all workouts for use by the stats page
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
             .then(workout => {
